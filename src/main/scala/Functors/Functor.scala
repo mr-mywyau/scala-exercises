@@ -5,9 +5,9 @@ Functor
 Functor is a type class that abstracts over type constructors that can be map‘ed over. Examples of such type constructors are List, Option, and Future.
 */
 
-// to write a functor define a higher kinded type
+// to write a functor define a type constructor to build a functor typeclass
 trait Functor[F[_]] {
-  def map[A, B](fa: F[A])(f: A => B): F[B]
+  def myVersionOfMap[A, B](fa: F[A])(f: A => B): F[B]
 }
 
 trait Functor2[F[_]] {
@@ -22,7 +22,7 @@ trait Functor2[F[_]] {
 class FunctorExercise {
 
   implicit val functorForOption: Functor[Option] = new Functor[Option] {
-    def map[A, B](fa: Option[A])(f: A => B): Option[B] = fa match {
+    def myVersionOfMap[A, B](fa: Option[A])(f: A => B): Option[B] = fa match {
       case None => None
       case Some(a) => Some(f(a))
     }
